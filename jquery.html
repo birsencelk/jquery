@@ -1,25 +1,78 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999.xhtml">
 <head>
     <meta charset="utf-8" />
     <script type="text/javascript" src="jquery-3.2.1.min.js"></script></script>
     <title>JQuery</title>
+    <style>
+        .kayitForm{
+            max-width:380px;
+            background-color:#f1f1f1;
+            padding:10px;
+            border: 1px solid #ccc;
+        }
+        input, seelect, .btn{
+            padding:5px;
+            margin:2px;
+        }
+        h5{
+            margin:2px;
+        }
+        .btn{
+            background-color:#0094ff;
+            border:none;
+            color:#fff;
+        }
+        .btn:hover{
+            background-color:#0882db;
+            cursor:pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="divEtiketi">
-        <h3>Bug�nk� G�ndem</h3>
-        <p class="icerik">
-            A tak�m� falanca oyuncuyu transfer etti
-        </p>
-    </div>
-    <input value="Birsen"/>
-    <script>
-        console.log(document.getElementById("divEtiketi").innerHTML);
-        console.log(document.getElementsByClassName("icerik")[0].innerHTML);
-        console.log("dizili"+$(".icerik")[0].innerHTML);
-        console.log("dizisiz"+$(".icerik").html());
-        console.log("jquery:"+$("#divEtiketi")[0].innerHTML);
-    </script>
+        <div class="kayitForm">
+            <div>
+                <h5>Adı ve Soyadı</h5>
+                <input type="text" placeholder="Ad" data-id="Adi" onblur="doluMu()"/>
+                <input type="text" placeholder="Soyad" data-id="Soyadi"/>
+            </div>
+            <div>
+                <h5>Mail</h5>
+                <input type="email" placeholder="Mail" data-id="Mail" />
+            </div>
+            <div>
+                <h5>Şifre</h5>
+                <input type="password" placeholder="şifre" data-id="Sifre"/>
+            </div>
+            <div>
+                <h5>Cinsiyet</h5>
+                <select>
+                    <option value="0">Cinsiyet Seçiniz</option>
+                    <option value="1">Erkek</option>
+                    <option value="2">Kadın</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn">Kayıt Ol</button>
+            </div>
+        </div>
+        <script>
+            var formVerisi = {}
+            $(".btn").click(function(){
+                var kayitElemanları=$(".kayitForm [data-id]");
+                for (var i = 0; i < kayitElemanları; i++) {
+                    formVerisi[kayitElemanları[i].attributes["data-id"].value]=kayitElemanları[i].value;
+                }
+            })
+            function doluMu() {
+                if ($("[data-id='Adi']").val() == "") {
+                    $("[data-id='Adi']").css("border", "1px solid red")
+                }
+                else {
+                    $("[data-id='Adi']").css("border","")
+                }
+            }</script>
+    
 </body>
 
 </html>
